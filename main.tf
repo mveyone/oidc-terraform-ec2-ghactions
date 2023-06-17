@@ -1,8 +1,8 @@
 # In this project we can't use the free tier t2.micro since we will be running many service on this machine so we will use t2.medium 
 resource "aws_instance" "ubuntu-instance" {
-  ami           = "ami-024e6efaf93d85776"
+  ami           = var.ami
   instance_type = "t2.micro"
-  key_name      = "Devops"
+  # key_name      = "mykey2"
   security_groups = ["${aws_security_group.UbuntuSG.name}"]
 
   tags  = {
@@ -16,5 +16,7 @@ resource "aws_instance" "ubuntu-instance" {
     volume_type = "gp2"
     encrypted   = false
   }
-#   user_data = "install.sh"
+  user_data = "install.sh"
 }
+
+
